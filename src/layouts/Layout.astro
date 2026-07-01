@@ -17,7 +17,8 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/images/rotaract-logo.png" />
+    <link rel="icon" type="image/png" href="/images/rueda.png" />
+    <link rel="apple-touch-icon" href="/images/rueda.png" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -26,7 +27,9 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/logo-rotaract-flor.png" />
+    <meta property="og:image" content={new URL("/images/rueda.png", Astro.site)} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content={new URL("/images/rueda.png", Astro.site)} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
