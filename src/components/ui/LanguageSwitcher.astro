@@ -1,0 +1,70 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const options = [
+  { code: "es" as const, label: "Español", href: getRelativeLocaleUrl("es", "/") },
+  { code: "en" as const, label: "English", href: getRelativeLocaleUrl("en", "/") },
+];
+---
+
+<div class="relative" id="lang-switcher">
+  <button
+    id="lang-toggle"
+    type="button"
+    aria-label={t("lang.switcherAria")}
+    aria-expanded="false"
+    class="flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-white/70 transition-colors hover:border-gold-soft hover:text-gold-soft"
+  >
+    <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.6">
+      <circle cx="12" cy="12" r="9" />
+      <path
+        stroke-linecap="round"
+        d="M3 12h18M12 3c2.5 2.7 3.8 6 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-6-3.8-9s1.3-6.3 3.8-9Z"
+      />
+    </svg>
+    {currentLang.toUpperCase()}
+  </button>
+
+  <div
+    id="lang-dropdown"
+    class="absolute right-0 top-full z-10 mt-2 hidden min-w-[9rem] overflow-hidden rounded-xl border border-white/10 bg-obsidian/95 shadow-xl backdrop-blur-xl"
+  >
+    {
+      options.map((opt) => (
+        <a
+          href={opt.href}
+          class:list={[
+            "block px-4 py-2.5 text-sm transition-colors hover:bg-white/5",
+            opt.code === currentLang ? "text-gold-soft" : "text-white/70 hover:text-white",
+          ]}
+        >
+          {opt.label}
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById("lang-toggle");
+  const dropdown = document.getElementById("lang-dropdown");
+
+  toggle?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const willShow = dropdown?.classList.contains("hidden");
+    dropdown?.classList.toggle("hidden");
+    toggle.setAttribute("aria-expanded", String(!!willShow));
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!dropdown || dropdown.classList.contains("hidden")) return;
+    if (event.target instanceof Node && !dropdown.contains(event.target) && event.target !== toggle) {
+      dropdown.classList.add("hidden");
+      toggle?.setAttribute("aria-expanded", "false");
+    }
+  });
+</script>

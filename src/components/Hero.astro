@@ -1,5 +1,9 @@
 ---
 import Button from "./ui/Button.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section class="relative flex min-h-screen items-center overflow-hidden pt-28">
@@ -19,28 +23,26 @@ import Button from "./ui/Button.astro";
         class="inline-flex items-center gap-2 rounded-full border border-gold-soft/40 bg-gold-soft/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft"
       >
         <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="currentColor"><path d="M12 2 9.5 8.5 3 9l5 4.5L6.5 21 12 17l5.5 4L16 13.5l5-4.5-6.5-.5Z"/></svg>
-        Mejor Club del Distrito
+        {t("hero.badge")}
       </span>
 
       <h1 class="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-        Liderazgo joven <br />
-        que <span class="text-gradient-brand">mueve a Cúcuta</span>
+        {t("hero.titleLine1")} <br />
+        <span class="text-gradient-brand">{t("hero.titleHighlight")}</span>
       </h1>
 
       <p class="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
-        Rotaract Casa Flora conecta a los profesionales y estudiantes más ambiciosos de la región
-        en una sola red de servicio, negocios y prestigio. No formamos parte del club número uno
-        del distrito por accidente — lo construimos, proyecto tras proyecto.
+        {t("hero.subtitle")}
       </p>
 
       <div class="mt-10 flex flex-wrap items-center gap-4">
-        <Button href="#contacto" size="lg">Únete al Club</Button>
-        <Button href="#proyectos" variant="secondary" size="lg">Ver Nuestro Impacto</Button>
+        <Button href="#contacto" size="lg">{t("hero.ctaPrimary")}</Button>
+        <Button href="#proyectos" variant="secondary" size="lg">{t("hero.ctaSecondary")}</Button>
       </div>
 
       <div class="mt-14 flex items-center gap-6 divider-gold pt-8">
         <p class="pt-6 text-xs uppercase tracking-[0.2em] text-white/40">
-          Socios de pleno derecho de
+          {t("hero.partnerLabel")}
         </p>
         <img
           src="/images/rotary-international-logo.webp"
@@ -54,14 +56,14 @@ import Button from "./ui/Button.astro";
       <div class="relative rounded-[2rem] border border-white/10 bg-charcoal/60 p-2 shadow-2xl shadow-black/60">
         <img
           src="/images/foto-club.png"
-          alt="Miembros de Rotaract Casa Flora"
+          alt={t("hero.imgAlt")}
           class="aspect-[4/5] w-full rounded-[1.6rem] object-cover"
         />
         <div
           class="absolute -bottom-6 -left-6 rounded-2xl border border-gold-soft/30 bg-obsidian/90 px-6 py-4 backdrop-blur-xl"
         >
           <p class="font-display text-3xl font-extrabold text-gradient-brand">+3</p>
-          <p class="text-xs uppercase tracking-widest text-white/60">Años liderando</p>
+          <p class="text-xs uppercase tracking-widest text-white/60">{t("hero.statYears")}</p>
         </div>
       </div>
     </div>

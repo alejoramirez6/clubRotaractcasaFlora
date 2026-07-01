@@ -12,6 +12,14 @@ export default defineConfig({
   // exporta `export const prerender = false;` en esa página/endpoint puntual.
   output: 'static',
 
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+
   adapter: cloudflare({
     imageService: 'compile',
     platformProxy: {

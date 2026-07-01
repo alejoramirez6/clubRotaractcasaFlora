@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Hero from "../../components/Hero.astro";
+import About from "../../components/About.astro";
+import Stats from "../../components/Stats.astro";
+import Projects from "../../components/Projects.astro";
+import Partners from "../../components/Partners.astro";
+import ContactCTA from "../../components/ContactCTA.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppButton from "../../components/ui/WhatsAppButton.astro";
+---
+
+<Layout>
+  <Navbar />
+  <main>
+    <Hero />
+    <About />
+    <Stats />
+    <Projects />
+    <Partners />
+    <ContactCTA />
+  </main>
+  <Footer />
+  <WhatsAppButton phone="573218792645" />
+</Layout>

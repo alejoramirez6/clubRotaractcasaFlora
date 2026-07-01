@@ -1,13 +1,15 @@
 ---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
 interface Props {
   phone: string;
   message?: string;
 }
 
-const {
-  phone,
-  message = "¡Hola! Quiero información sobre cómo unirme a Rotaract Casa Flora.",
-} = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { phone, message = t("whatsapp.defaultMessage") } = Astro.props;
 
 const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 ---
@@ -16,7 +18,7 @@ const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   href={href}
   target="_blank"
   rel="noopener noreferrer"
-  aria-label="Escríbenos por WhatsApp"
+  aria-label={t("whatsapp.ariaLabel")}
   class="group fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center"
 >
   <span

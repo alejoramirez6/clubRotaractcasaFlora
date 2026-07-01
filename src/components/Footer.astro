@@ -1,5 +1,12 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const currentYear = new Date().getFullYear();
+const socialSoonLabel = t("footer.socialSoon");
+const socialSoonOnLabel = t("footer.socialSoonOn");
 
 const socials = [
   {
@@ -24,26 +31,26 @@ const socials = [
 
 const columns = [
   {
-    title: "Club",
+    title: t("footer.colClub"),
     links: [
-      { label: "Quiénes Somos", href: "#quienes-somos" },
-      { label: "Impacto", href: "#impacto" },
-      { label: "Proyectos", href: "#proyectos" },
+      { label: t("nav.about"), href: "#quienes-somos" },
+      { label: t("nav.impact"), href: "#impacto" },
+      { label: t("nav.projects"), href: "#proyectos" },
     ],
   },
   {
-    title: "Comunidad",
+    title: t("footer.colCommunity"),
     links: [
-      { label: "Alianzas", href: "#alianzas" },
-      { label: "Únete al Club", href: "#contacto" },
-      { label: "Contacto", href: "#contacto" },
+      { label: t("nav.partners"), href: "#alianzas" },
+      { label: t("nav.cta"), href: "#contacto" },
+      { label: t("nav.contact"), href: "#contacto" },
     ],
   },
   {
-    title: "Legal",
+    title: t("footer.colLegal"),
     links: [
-      { label: "Política de Privacidad", href: "/privacidad" },
-      { label: "Términos de Uso", href: "/terminos" },
+      { label: t("footer.linkPrivacy"), href: "/privacidad" },
+      { label: t("footer.linkTerms"), href: "/terminos" },
     ],
   },
 ];
@@ -58,8 +65,7 @@ const columns = [
           <span class="font-display text-sm font-semibold uppercase tracking-[0.2em]">Casa Flora</span>
         </div>
         <p class="mt-5 max-w-sm text-sm leading-relaxed text-white/55">
-          El club rotario que redefine el liderazgo joven en Cúcuta. Servicio, prestigio y una red
-          profesional que trasciende fronteras.
+          {t("footer.tagline")}
         </p>
 
         <div class="mt-6 flex gap-3">
@@ -69,7 +75,7 @@ const columns = [
                 <button
                   type="button"
                   data-social-soon={social.label}
-                  aria-label={`${social.label} — próximamente`}
+                  aria-label={`${social.label} — ${socialSoonLabel}`}
                   class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/70 transition-all hover:border-gold-soft hover:text-gold-soft"
                 >
                   <svg viewBox="0 0 24 24" class="h-4.5 w-4.5" fill="currentColor">
@@ -116,9 +122,9 @@ const columns = [
 
     <div class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
       <p class="text-xs text-white/40">
-        © {currentYear} Rotaract Club Casa Flora. Todos los derechos reservados.
+        © {currentYear} Rotaract Club Casa Flora. {t("footer.rights")}
       </p>
-      <p class="text-xs text-white/40">Cúcuta, Norte de Santander — Colombia</p>
+      <p class="text-xs text-white/40">{t("footer.location")}</p>
     </div>
   </div>
 
@@ -130,20 +136,20 @@ const columns = [
       <svg viewBox="0 0 24 24" class="h-4 w-4 text-gold-soft" fill="currentColor">
         <path d="M12 2 9.5 8.5 3 9l5 4.5L6.5 21 12 17l5.5 4L16 13.5l5-4.5-6.5-.5Z" />
       </svg>
-      <span id="social-toast-text">Muy pronto estaremos aquí</span>
+      <span id="social-toast-text">{socialSoonLabel}</span>
     </div>
   </div>
 </footer>
 
-<script>
+<script define:vars={{ socialSoonOnLabel }}>
   const toast = document.getElementById("social-toast");
   const toastText = document.getElementById("social-toast-text");
-  let hideTimeout: ReturnType<typeof setTimeout>;
+  let hideTimeout;
 
-  document.querySelectorAll<HTMLButtonElement>("[data-social-soon]").forEach((button) => {
+  document.querySelectorAll("[data-social-soon]").forEach((button) => {
     button.addEventListener("click", () => {
       const network = button.dataset.socialSoon;
-      if (toastText) toastText.textContent = `Muy pronto estaremos en ${network} ✨`;
+      if (toastText) toastText.textContent = `${socialSoonOnLabel} ${network} ✨`;
       toast?.classList.remove("opacity-0", "translate-y-3");
       toast?.classList.add("opacity-100", "translate-y-0");
 

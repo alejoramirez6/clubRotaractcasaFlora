@@ -1,49 +1,42 @@
 ---
 import Card from "./ui/Card.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const rotaryHref =
+  lang === "en"
+    ? "https://www.rotary.org/en/get-involved/rotaract-clubs"
+    : "https://www.rotary.org/es/get-involved/rotaract-clubs";
 
 const pillars = [
-  {
-    title: "Socios de Rotary",
-    text: "Desde la reforma de 2020, Rotaract es un socio de pleno derecho de Rotary International, con voz, voto y representación directa en el ecosistema rotario mundial.",
-    icon: "M12 3 3 7.5 12 12l9-4.5L12 3Zm-9 6v6l9 4.5 9-4.5V9l-9 4.5L3 9Z",
-  },
-  {
-    title: "Liderazgo Profesional",
-    text: "No somos un club social más. Somos una incubadora de líderes: jóvenes profesionales y estudiantes que ejecutan proyectos reales con estándares corporativos.",
-    icon: "M12 2 2 7l10 5 10-5-10-5Zm0 8v12M2 12v5l10 5 10-5v-5",
-  },
-  {
-    title: "Identidad Casa Flora",
-    text: "El nombre nos define: florecemos donde otros solo observan. Cúcuta es nuestro territorio de impacto y cada socio es una raíz que sostiene el crecimiento del club.",
-    icon: "M12 21c4-3 7-7.5 7-11.5A7 7 0 0 0 5 9.5C5 13.5 8 18 12 21Z",
-  },
+  { title: t("pillar1.title"), text: t("pillar1.text"), icon: "M12 3 3 7.5 12 12l9-4.5L12 3Zm-9 6v6l9 4.5 9-4.5V9l-9 4.5L3 9Z" },
+  { title: t("pillar2.title"), text: t("pillar2.text"), icon: "M12 2 2 7l10 5 10-5-10-5Zm0 8v12M2 12v5l10 5 10-5v-5" },
+  { title: t("pillar3.title"), text: t("pillar3.text"), icon: "M12 21c4-3 7-7.5 7-11.5A7 7 0 0 0 5 9.5C5 13.5 8 18 12 21Z" },
 ];
 ---
 
 <section id="quienes-somos" class="relative py-28">
   <div class="mx-auto max-w-7xl px-6 lg:px-10">
     <div class="mx-auto max-w-2xl text-center">
-      <span class="text-xs font-semibold uppercase tracking-[0.25em] text-magenta-bright">Evolución</span>
+      <span class="text-xs font-semibold uppercase tracking-[0.25em] text-magenta-bright">{t("about.eyebrow")}</span>
       <h2 class="mt-4 font-display text-4xl font-bold sm:text-5xl">
-        Rotaract, hoy, es otra <span class="text-gradient-brand">liga</span>
+        {t("about.titleLine1")} <span class="text-gradient-brand">{t("about.titleHighlight")}</span>
       </h2>
       <p class="mt-5 text-white/65">
-        Dejamos atrás la idea de "club juvenil de acompañamiento". Hoy somos una organización de
-        liderazgo, servicio e impacto profesional que opera con la misma exigencia que cualquier
-        junta directiva de alto nivel — y con el corazón de Casa Flora.
+        {t("about.p1")}
       </p>
       <p class="mt-5 text-white/65">
-        Nacimos de la unión de ocho amigos apasionados por el servicio comunitario. Nos enorgullece
-        ser el primer club Rotaract de Colombia y de la zona 25A sin un club rotario padrino —
-        una prueba de que el liderazgo joven no necesita permiso para empezar a construir.
+        {t("about.p2")}
       </p>
       <a
-        href="https://www.rotary.org/es/our-programs/rotaract"
+        href={rotaryHref}
         target="_blank"
         rel="noopener noreferrer"
         class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold-soft transition-colors hover:text-gold"
       >
-        ¿Quieres conocer más sobre Rotaract?
+        {t("about.learnMore")}
         <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
         </svg>

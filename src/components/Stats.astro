@@ -1,9 +1,14 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const stats = [
-  { value: "3+", label: "Años liderando el distrito", accent: "gold" },
-  { value: "N.º 1", label: "Mejor Club del Distrito", accent: "magenta" },
-  { value: "+10M", label: "COP donados a la comunidad", accent: "gold" },
-  { value: "+6", label: "Proyectos comunitarios ejecutados", accent: "magenta" },
+  { value: "3+", label: t("stats.years"), accent: "gold" },
+  { value: "N.º 1", label: t("stats.bestClub"), accent: "magenta" },
+  { value: "+10M", label: t("stats.donations"), accent: "gold" },
+  { value: "+6", label: t("stats.projects"), accent: "magenta" },
 ];
 ---
 

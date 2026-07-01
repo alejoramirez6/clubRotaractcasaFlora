@@ -1,12 +1,17 @@
 ---
 import Button from "./ui/Button.astro";
+import LanguageSwitcher from "./ui/LanguageSwitcher.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const links = [
-  { label: "Quiénes Somos", href: "#quienes-somos" },
-  { label: "Impacto", href: "#impacto" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Alianzas", href: "#alianzas" },
-  { label: "Contacto", href: "#contacto" },
+  { label: t("nav.about"), href: "#quienes-somos" },
+  { label: t("nav.impact"), href: "#impacto" },
+  { label: t("nav.projects"), href: "#proyectos" },
+  { label: t("nav.partners"), href: "#alianzas" },
+  { label: t("nav.contact"), href: "#contacto" },
 ];
 ---
 
@@ -41,23 +46,27 @@ const links = [
       }
     </ul>
 
-    <div class="hidden lg:block">
-      <Button href="#contacto" size="md">Únete al Club</Button>
-    </div>
+    <div class="flex items-center gap-3">
+      <LanguageSwitcher />
 
-    <button
-      id="menu-toggle"
-      class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white lg:hidden"
-      aria-label="Abrir menú"
-      aria-expanded="false"
-    >
-      <svg id="icon-open" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-        <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-      <svg id="icon-close" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-        <path stroke-linecap="round" d="M6 18 18 6M6 6l12 12" />
-      </svg>
-    </button>
+      <div class="hidden lg:block">
+        <Button href="#contacto" size="md">{t("nav.cta")}</Button>
+      </div>
+
+      <button
+        id="menu-toggle"
+        class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white lg:hidden"
+        aria-label={t("nav.openMenu")}
+        aria-expanded="false"
+      >
+        <svg id="icon-open" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="icon-close" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
   </nav>
 
   <div
@@ -75,7 +84,7 @@ const links = [
       ))
     }
     <div class="mt-2 px-3">
-      <Button href="#contacto" class="w-full">Únete al Club</Button>
+      <Button href="#contacto" class="w-full">{t("nav.cta")}</Button>
     </div>
   </div>
 </header>

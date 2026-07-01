@@ -1,19 +1,20 @@
 ---
 import "../styles/global.css";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const {
-  title = "Rotaract Casa Flora | El Club N.º 1 del Distrito",
-  description = "Rotaract Casa Flora: liderazgo joven, impacto real y la red profesional de élite en Cúcuta. Socios de pleno derecho de Rotary International.",
-} = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { title = t("meta.title"), description = t("meta.description") } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
