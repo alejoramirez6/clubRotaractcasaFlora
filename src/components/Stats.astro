@@ -1,0 +1,31 @@
+---
+const stats = [
+  { value: "3+", label: "Años liderando el distrito", accent: "gold" },
+  { value: "N.º 1", label: "Mejor Club del Distrito", accent: "magenta" },
+  { value: "+40M", label: "COP donados a la comunidad", accent: "gold" },
+  { value: "25+", label: "Proyectos comunitarios ejecutados", accent: "magenta" },
+];
+---
+
+<section id="impacto" class="relative py-24">
+  <div class="absolute inset-x-0 top-0 -z-10 h-px divider-gold"></div>
+
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        stats.map((stat) => (
+          <div class="group relative bg-obsidian-soft/80 px-6 py-12 text-center transition-colors hover:bg-charcoal">
+            <p
+              class={`font-display text-4xl font-extrabold sm:text-5xl ${
+                stat.accent === "gold" ? "text-gold-soft" : "text-magenta-bright"
+              }`}
+            >
+              {stat.value}
+            </p>
+            <p class="mt-3 text-sm text-white/60">{stat.label}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

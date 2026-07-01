@@ -1,0 +1,69 @@
+---
+import Button from "./ui/Button.astro";
+---
+
+<section class="relative flex min-h-screen items-center overflow-hidden pt-28">
+  <div
+    class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(209,0,116,0.25),transparent_45%),radial-gradient(circle_at_80%_75%,rgba(212,175,55,0.15),transparent_40%)]"
+  >
+  </div>
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-obsidian via-obsidian/95 to-obsidian"></div>
+  <div
+    class="absolute -top-40 left-1/2 -z-10 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-magenta/20 blur-[140px] animate-glow"
+  >
+  </div>
+
+  <div class="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-10">
+    <div class="animate-fade-up">
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-gold-soft/40 bg-gold-soft/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft"
+      >
+        <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="currentColor"><path d="M12 2 9.5 8.5 3 9l5 4.5L6.5 21 12 17l5.5 4L16 13.5l5-4.5-6.5-.5Z"/></svg>
+        Mejor Club del Distrito
+      </span>
+
+      <h1 class="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+        Liderazgo joven <br />
+        que <span class="text-gradient-brand">mueve a Cúcuta</span>
+      </h1>
+
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
+        Rotaract Casa Flora conecta a los profesionales y estudiantes más ambiciosos de la región
+        en una sola red de servicio, negocios y prestigio. No formamos parte del club número uno
+        del distrito por accidente — lo construimos, proyecto tras proyecto.
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <Button href="#contacto" size="lg">Únete al Club</Button>
+        <Button href="#proyectos" variant="secondary" size="lg">Ver Nuestro Impacto</Button>
+      </div>
+
+      <div class="mt-14 flex items-center gap-6 divider-gold pt-8">
+        <p class="pt-6 text-xs uppercase tracking-[0.2em] text-white/40">
+          Socios de pleno derecho de
+        </p>
+        <img
+          src="/images/rotary-international-logo.webp"
+          alt="Rotary International"
+          class="pt-6 h-8 w-auto opacity-70 grayscale"
+        />
+      </div>
+    </div>
+
+    <div class="relative animate-fade-up [animation-delay:150ms]">
+      <div class="relative rounded-[2rem] border border-white/10 bg-charcoal/60 p-2 shadow-2xl shadow-black/60">
+        <img
+          src="/images/foto-club.jpeg"
+          alt="Miembros de Rotaract Casa Flora"
+          class="aspect-[4/5] w-full rounded-[1.6rem] object-cover"
+        />
+        <div
+          class="absolute -bottom-6 -left-6 rounded-2xl border border-gold-soft/30 bg-obsidian/90 px-6 py-4 backdrop-blur-xl"
+        >
+          <p class="font-display text-3xl font-extrabold text-gradient-brand">+3</p>
+          <p class="text-xs uppercase tracking-widest text-white/60">Años liderando</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

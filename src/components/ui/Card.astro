@@ -1,0 +1,18 @@
+---
+interface Props {
+  class?: string;
+  glow?: boolean;
+}
+
+const { class: className = "", glow = true } = Astro.props;
+---
+
+<div
+  class:list={[
+    "relative rounded-2xl bg-charcoal/70 backdrop-blur-sm p-8",
+    { "card-border-glow": glow },
+    className,
+  ]}
+>
+  <slot />
+</div>

@@ -1,0 +1,103 @@
+---
+// Formulario 100% cliente: hoy compone un mensaje de WhatsApp con los datos.
+// Para procesarlo en el Edge en el futuro, crea src/pages/api/contact.ts con
+// `export const prerender = false;` y cambia el submit para hacer fetch a esa ruta.
+const whatsappPhone = "573000000000";
+---
+
+<section id="contacto" class="relative py-28">
+  <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(209,0,116,0.22),transparent_55%)]"></div>
+
+  <div class="mx-auto max-w-5xl px-6 lg:px-10">
+    <div class="rounded-[2.5rem] border border-white/10 bg-charcoal/60 p-8 backdrop-blur-sm sm:p-14">
+      <div class="mx-auto max-w-2xl text-center">
+        <span class="text-xs font-semibold uppercase tracking-[0.25em] text-magenta-bright">
+          Da el siguiente paso
+        </span>
+        <h2 class="mt-4 font-display text-4xl font-bold sm:text-5xl">
+          Tu lugar en el club <span class="text-gradient-brand">N.º 1</span> te espera
+        </h2>
+        <p class="mt-4 text-white/65">
+          Cuéntanos quién eres y qué te trajo hasta aquí. Un miembro del comité de admisión te
+          contactará en menos de 48 horas.
+        </p>
+      </div>
+
+      <form id="contact-form" class="mx-auto mt-10 grid max-w-2xl gap-5 sm:grid-cols-2">
+        <div class="sm:col-span-1">
+          <label for="name" class="mb-2 block text-xs uppercase tracking-widest text-white/50">Nombre completo</label>
+          <input
+            id="name"
+            name="name"
+            required
+            type="text"
+            placeholder="Tu nombre"
+            class="w-full rounded-xl border border-white/10 bg-obsidian/60 px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-magenta-bright"
+          />
+        </div>
+        <div class="sm:col-span-1">
+          <label for="email" class="mb-2 block text-xs uppercase tracking-widest text-white/50">Correo</label>
+          <input
+            id="email"
+            name="email"
+            required
+            type="email"
+            placeholder="tu@correo.com"
+            class="w-full rounded-xl border border-white/10 bg-obsidian/60 px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-magenta-bright"
+          />
+        </div>
+        <div class="sm:col-span-2">
+          <label for="interest" class="mb-2 block text-xs uppercase tracking-widest text-white/50">
+            Me interesa
+          </label>
+          <select
+            id="interest"
+            name="interest"
+            class="w-full rounded-xl border border-white/10 bg-obsidian/60 px-4 py-3 text-sm text-white outline-none transition-colors focus:border-magenta-bright"
+          >
+            <option>Ser socio del club</option>
+            <option>Aliarme como empresa/patrocinador</option>
+            <option>Colaborar en un proyecto puntual</option>
+          </select>
+        </div>
+        <div class="sm:col-span-2">
+          <label for="message" class="mb-2 block text-xs uppercase tracking-widest text-white/50">Mensaje</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            placeholder="Cuéntanos un poco más..."
+            class="w-full rounded-xl border border-white/10 bg-obsidian/60 px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-magenta-bright"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="sm:col-span-2 mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-magenta to-magenta-bright px-8 py-4 text-sm font-semibold text-white shadow-[0_0_25px_-5px_rgba(209,0,116,0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_35px_-2px_rgba(255,26,140,0.85)]"
+        >
+          Enviar Solicitud
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ whatsappPhone }}>
+  const form = document.getElementById("contact-form");
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const name = data.get("name");
+    const email = data.get("email");
+    const interest = data.get("interest");
+    const message = data.get("message") || "Sin comentarios adicionales.";
+
+    const text =
+      `Hola, soy ${name} (${email}).\n` +
+      `Estoy interesado en: ${interest}.\n` +
+      `${message}`;
+
+    window.open(`https://wa.me/${whatsappPhone}?text=${encodeURIComponent(text)}`, "_blank");
+  });
+</script>

@@ -1,0 +1,58 @@
+---
+import Button from "./ui/Button.astro";
+
+const benefits = [
+  "Acceso directo a una red de jóvenes profesionales de alto desempeño",
+  "Visibilidad de marca en proyectos de impacto social verificable",
+  "Espacios exclusivos de networking corporativo y estratégico",
+  "Alianzas de responsabilidad social con retorno reputacional real",
+];
+---
+
+<section id="alianzas" class="relative overflow-hidden py-28">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-br from-charcoal via-obsidian to-obsidian"></div>
+  <div class="absolute -right-32 top-1/2 -z-10 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-gold/10 blur-[120px]"></div>
+
+  <div class="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center lg:px-10">
+    <div>
+      <span class="text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft">Alianzas Estratégicas</span>
+      <h2 class="mt-4 font-display text-4xl font-bold sm:text-5xl">
+        Tu marca, junto al <span class="text-gradient-brand">club N.º 1</span>
+      </h2>
+      <p class="mt-5 text-white/65">
+        Asociarte con Rotaract Casa Flora es conectar tu empresa con la próxima generación de
+        líderes de la región — con la seriedad de una organización que ya lidera el distrito.
+      </p>
+
+      <ul class="mt-8 space-y-4">
+        {
+          benefits.map((benefit) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-magenta/20 text-magenta-bright">
+                <svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="3">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <span class="text-sm text-white/75">{benefit}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-10">
+        <Button href="#contacto" variant="secondary" size="lg">Convertirme en Aliado</Button>
+      </div>
+    </div>
+
+    <div class="relative rounded-[2rem] border border-gold-soft/20 bg-charcoal/50 p-10 backdrop-blur-sm">
+      <div class="grid grid-cols-2 gap-8">
+        <img src="/images/rotaract-logo.png" alt="Rotaract" class="h-14 w-auto self-center opacity-90" />
+        <img src="/images/rotary-international-logo.webp" alt="Rotary International" class="h-14 w-auto self-center opacity-90" />
+      </div>
+      <p class="mt-8 border-t border-white/10 pt-6 text-sm italic text-white/60">
+        "El respaldo de una red global con la ejecución local de un equipo que no se conforma con
+        ser bueno — quiere ser el mejor."
+      </p>
+    </div>
+  </div>
+</section>
