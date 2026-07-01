@@ -1,8 +1,5 @@
 ---
-// Ruta protegida con contrasena (HTTP Basic Auth) a nivel de servidor.
-// La contrasena vive en Cloudflare Pages como variable de entorno secreta
-// llamada PRESENTACION_PASSWORD (Settings -> Environment variables).
-// En local, crea un archivo .dev.vars con: PRESENTACION_PASSWORD=tu-clave
+// La proteccion con contrasena vive en src/middleware.ts (aplica a esta ruta).
 export const prerender = false;
 
 import Layout from "../layouts/Layout.astro";
@@ -10,39 +7,6 @@ import SlideHeader from "../components/presentacion/SlideHeader.astro";
 import Notes from "../components/presentacion/Notes.astro";
 import Kpi from "../components/presentacion/Kpi.astro";
 import Step from "../components/presentacion/Step.astro";
-
-const runtimeEnv = Astro.locals.runtime?.env ?? {};
-const expectedPassword = runtimeEnv.PRESENTACION_PASSWORD;
-
-function isAuthorized(header, password) {
-  if (!password) return false;
-  if (!header || !header.startsWith("Basic ")) return false;
-  try {
-    const decoded = atob(header.slice(6));
-    const separatorIndex = decoded.indexOf(":");
-    return decoded.slice(separatorIndex + 1) === password;
-  } catch {
-    return false;
-  }
-}
-
-const authHeader = Astro.request.headers.get("authorization");
-
-console.log("presentacion.astro DEBUG", {
-  hasRuntime: typeof Astro.locals.runtime,
-  runtimeEnvKeys: Object.keys(runtimeEnv),
-  expectedPasswordType: typeof expectedPassword,
-  authHeaderPresent: !!authHeader,
-});
-
-if (!isAuthorized(authHeader, expectedPassword)) {
-  return new Response("Autenticación requerida", {
-    status: 401,
-    headers: { "WWW-Authenticate": 'Basic realm="Rotary Casa Flora"' },
-  });
-}
-
-console.log("presentacion.astro DEBUG: auth passed, about to render");
 ---
 
 <Layout title="Rotary Casa Flora — Propuesta de Fundación" noindex={true}>
