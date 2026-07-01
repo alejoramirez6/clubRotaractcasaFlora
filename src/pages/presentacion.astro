@@ -28,12 +28,21 @@ function isAuthorized(header, password) {
 
 const authHeader = Astro.request.headers.get("authorization");
 
+console.log("presentacion.astro DEBUG", {
+  hasRuntime: typeof Astro.locals.runtime,
+  runtimeEnvKeys: Object.keys(runtimeEnv),
+  expectedPasswordType: typeof expectedPassword,
+  authHeaderPresent: !!authHeader,
+});
+
 if (!isAuthorized(authHeader, expectedPassword)) {
   return new Response("Autenticación requerida", {
     status: 401,
     headers: { "WWW-Authenticate": 'Basic realm="Rotary Casa Flora"' },
   });
 }
+
+console.log("presentacion.astro DEBUG: auth passed, about to render");
 ---
 
 <Layout title="Rotary Casa Flora — Propuesta de Fundación" noindex={true}>
