@@ -40,15 +40,18 @@ const t = useTranslations(lang);
         <Button href="#proyectos" variant="secondary" size="lg">{t("hero.ctaSecondary")}</Button>
       </div>
 
-      <div class="mt-14 flex items-center gap-6 divider-gold pt-8">
-        <p class="pt-6 text-xs uppercase tracking-[0.2em] text-white/40">
-          {t("hero.partnerLabel")}
-        </p>
-        <img
-          src="/images/rotary-international-logo.webp"
-          alt="Rotary International"
-          class="pt-6 h-8 w-auto opacity-70 grayscale"
-        />
+      <div class="mt-14">
+        <div class="divider-gold"></div>
+        <div class="mt-8 flex items-center gap-6">
+          <p class="text-xs uppercase tracking-[0.2em] text-white/40">
+            {t("hero.partnerLabel")}
+          </p>
+          <img
+            src="/images/rotary-international-logo.webp"
+            alt="Rotary International"
+            class="h-14 w-auto opacity-90 grayscale"
+          />
+        </div>
       </div>
     </div>
 
