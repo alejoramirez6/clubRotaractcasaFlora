@@ -118,6 +118,10 @@ export const ui = {
       "Rotaract Casa Flora: liderazgo joven, impacto real y la red profesional de élite en Cúcuta. Socios de pleno derecho de Rotary International.",
 
     "lang.switcherAria": "Cambiar idioma",
+
+    "flora.message":
+      "¡Hola! Soy Flora 🐾 Le doy nombre a este club. Ya no estoy físicamente aquí, pero mi huella sigue viva en cada proyecto de Casa Flora.",
+    "flora.alt": "Flora, la mascota de Casa Flora",
   },
   en: {
     "nav.about": "About Us",
@@ -230,5 +234,9 @@ export const ui = {
       "Rotaract Casa Flora: young leadership, real impact, and Cúcuta's elite professional network. Full partners of Rotary International.",
 
     "lang.switcherAria": "Change language",
+
+    "flora.message":
+      "Hi, I'm Flora 🐾 I'm the reason this club is called Casa Flora. I'm not physically here anymore, but my paw prints live on in everything we do.",
+    "flora.alt": "Flora, the Casa Flora mascot",
   },
 } as const;

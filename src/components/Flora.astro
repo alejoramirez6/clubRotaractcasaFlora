@@ -1,0 +1,127 @@
+---
+// Homenaje a Flora, la Gran Danés que le da nombre al club.
+// Coloca la imagen (perfil completo, fondo transparente, mirando hacia la
+// derecha) en public/images/flora.png para que aparezca caminando.
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="pointer-events-none fixed inset-x-0 bottom-0 z-30 h-0 select-none">
+  <div id="flora-mascot" class="flora-walker group pointer-events-auto absolute bottom-2 left-0">
+    <div
+      id="flora-bubble"
+      class="pointer-events-none absolute -top-2 left-1/2 w-56 -translate-x-1/2 -translate-y-full rounded-2xl border border-gold-soft/30 bg-obsidian/95 px-4 py-3 text-center text-xs leading-relaxed text-white/85 opacity-0 shadow-2xl shadow-black/50 backdrop-blur-xl transition-all duration-300 group-hover:opacity-100 group-hover:[transform:translate(-50%,calc(-100%-8px))]"
+    >
+      {t("flora.message")}
+      <span class="absolute left-1/2 top-full -translate-x-1/2 border-8 border-transparent border-t-obsidian/95"></span>
+    </div>
+
+    <div class="flora-shadow"></div>
+
+    <div class="flora-bob">
+      <div class="flora-face">
+        <img src="/images/flora.png" alt={t("flora.alt")} class="h-28 w-auto sm:h-36" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const mascot = document.getElementById("flora-mascot");
+  const bubble = document.getElementById("flora-bubble");
+
+  mascot?.addEventListener("click", () => {
+    bubble?.classList.toggle("is-visible");
+  });
+
+  document.addEventListener("click", (event) => {
+    if (event.target instanceof Node && !mascot?.contains(event.target)) {
+      bubble?.classList.remove("is-visible");
+    }
+  });
+</script>
+
+<style>
+  .flora-walker {
+    animation: flora-walk 28s linear infinite;
+    will-change: transform;
+  }
+
+  .flora-face {
+    animation: flora-face 28s linear infinite;
+    transform-origin: 50% 50%;
+  }
+
+  .flora-bob {
+    animation: flora-bob 0.6s ease-in-out infinite;
+  }
+
+  .flora-shadow {
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 55%;
+    height: 12px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.5) 0%, transparent 75%);
+    animation: flora-shadow-pulse 0.6s ease-in-out infinite;
+  }
+
+  .flora-bob img {
+    display: block;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35));
+  }
+
+  #flora-bubble.is-visible {
+    opacity: 1;
+    transform: translate(-50%, calc(-100% - 8px));
+    pointer-events: auto;
+  }
+
+  @keyframes flora-walk {
+    0% {
+      transform: translateX(-18vw);
+    }
+    50% {
+      transform: translateX(112vw);
+    }
+    100% {
+      transform: translateX(-18vw);
+    }
+  }
+
+  @keyframes flora-face {
+    0%,
+    49.85% {
+      transform: scaleX(1);
+    }
+    50%,
+    100% {
+      transform: scaleX(-1);
+    }
+  }
+
+  @keyframes flora-bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-7px);
+    }
+  }
+
+  @keyframes flora-shadow-pulse {
+    0%,
+    100% {
+      transform: translateX(-50%) scale(1);
+      opacity: 0.55;
+    }
+    50% {
+      transform: translateX(-50%) scale(0.82);
+      opacity: 0.3;
+    }
+  }
+</style>

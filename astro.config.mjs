@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://rotaractcasaflora.org',
+  site: 'https://clubrotaractcasaflora.org',
 
   // Modo estático-híbrido: todo se pre-renderiza en el Edge por defecto.
   // Para una futura ruta de API (ej. procesar el formulario de contacto),
