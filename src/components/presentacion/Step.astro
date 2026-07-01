@@ -1,0 +1,12 @@
+---
+interface Props {
+  n: string;
+  t: string;
+}
+const { n, t } = Astro.props;
+---
+
+<div class="rounded-2xl border border-gold-soft/25 bg-gold-soft/5 p-5">
+  <p class="font-display text-2xl font-extrabold text-gold">{n}</p>
+  <p class="mt-2 text-xs leading-relaxed text-white/60">{t}</p>
+</div>

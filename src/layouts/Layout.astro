@@ -5,12 +5,13 @@ import { getLangFromUrl, useTranslations } from "../i18n/utils";
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const { title = t("meta.title"), description = t("meta.description") } = Astro.props;
+const { title = t("meta.title"), description = t("meta.description"), noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -23,6 +24,7 @@ const { title = t("meta.title"), description = t("meta.description") } = Astro.p
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="theme-color" content="#0b0b0b" />
 
     <meta property="og:title" content={title} />
